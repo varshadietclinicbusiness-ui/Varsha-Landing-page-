@@ -32,14 +32,15 @@ export const content = {
   // Hero — top of the homepage. Photo is real.
   hero: {
     visible: true,
-    // PLACEHOLDER — LOW RISK
-    headline: "Evidence-based nutrition built for real Indian lifestyles.",
+    // SEO H1 from the SEO handoff (10 Oct 2026), shortened to keep the hero at 4 lines.
+    // Earlier headline: "Evidence-based nutrition built for real Indian lifestyles."
+    headline: "Personalised Dietitian in Bibwewadi, Pune",
     subtext:
       "Specialized clinical care for PCOD, diabetes, thyroid health, and pregnancy. Work directly with a dietitian who listens first.",
     image: "/images/hero/varsha-photo.jpeg",
-    imageAlt: "Dt. Varsha Ladkat",
-    decorative1440: "/images/hero/decorative-1440.png",
-    decorative1920: "/images/hero/decorative-1920.png",
+    imageAlt: "Dt. Varsha Ladkat, dietitian at Varsha Diet Clinic in Bibwewadi, Pune",
+    decorative1440: "/images/hero/decorative-1440.webp",
+    decorative1920: "/images/hero/decorative-1920.webp",
     decorativeAlt: "Indian dishes",
     dishes: [
       { src: "/images/hero/dish-1.png", alt: "Indian dish" },
@@ -456,6 +457,146 @@ export const content = {
     ],
   },
 
+  // SEO — titles, descriptions and site settings from the SEO developer handoff (10 Oct 2026).
+  // Page titles stay under 52 characters.
+  seo: {
+    // Preferred public address. Change this one value when a custom domain goes live.
+    siteUrl: "https://varsha-landing-page-two.vercel.app",
+    locale: "en_IN",
+    // 1200x630 share card shown when a link is posted on WhatsApp, Instagram or Google.
+    shareImage: "/og-image.jpg",
+    shareImageAlt: "Dt. Varsha Ladkat, dietitian at Varsha Diet Clinic in Bibwewadi, Pune",
+    // MISSING — needs Varsha's GA4 measurement ID (looks like G-XXXXXXXXXX). Tracking stays off until set.
+    ga4Id: MISSING as string,
+    // MISSING — Search Console HTML-tag verification code. Not added until Varsha provides it.
+    searchConsoleVerification: MISSING as string,
+    home: {
+      title: "Dietitian in Bibwewadi, Pune | Varsha Diet Clinic",
+      description:
+        "Looking for a dietitian in Bibwewadi, Pune? Personalised nutrition plans for weight, PCOD, thyroid and diabetes. Book a consultation with Varsha Diet Clinic.",
+    },
+    packages: {
+      title: "Diet Plans and Prices in Pune | Varsha Diet Clinic",
+      description:
+        "Diet plans for thyroid, diabetes, PCOD, GDM, weight gain and weight loss in Pune, with clear prices. Chat with Varsha Diet Clinic on WhatsApp.",
+    },
+    recipes: {
+      title: "High-Protein Indian Recipes | Varsha Diet Clinic",
+      description:
+        "Easy high-protein Indian recipes from Varsha Diet Clinic in Pune, including paneer bhurji, moong dal chilla and soya chunk stir fry.",
+    },
+    about: {
+      title: "About Us | Varsha’s Diet Clinic, Bibwewadi Pune",
+      description:
+        "Learn about Varsha’s Diet Clinic in Bibwewadi, Pune, and our personalised nutrition guidance for weight management and individual dietary needs.",
+    },
+    // Opening hours are read from location.hours. Business facts for structured data come from
+    // location, footer and whatsapp. Never add ratings, reviews or credentials here.
+    businessType: "MedicalBusiness",
+  },
+
+  // About Us — copy from "About Us — Website Content & SEO Brief" (10 Oct 2026).
+  about: {
+    visible: true,
+    path: "/about-us",
+    heading: "About Varsha’s Diet Clinic",
+    intro: {
+      heading: "Your Health, Your Goals, Your Personalised Nutrition Journey",
+      paragraphs: [
+        "At Varsha’s Diet Clinic, we believe that healthy living starts with the right nutrition, practical food choices, and sustainable lifestyle habits. Our aim is to help individuals make informed dietary decisions through personalised nutrition guidance that fits their health needs, food preferences, daily routine, and personal goals.",
+        "Led by Dt. Varsha Ladkat, Varsha’s Diet Clinic focuses on making nutrition guidance practical, approachable, and easier to follow in everyday life. We understand that every individual is different, which is why dietary recommendations should be tailored to individual needs rather than relying on a one-size-fits-all approach.",
+      ],
+    },
+    services: {
+      heading: "Our Nutrition Services",
+      intro: "We provide nutrition guidance and personalised diet planning for the following areas:",
+      items: [
+        {
+          title: "Weight Management",
+          body: "Practical dietary guidance for healthy weight loss and weight gain.",
+        },
+        {
+          title: "PCOS/PCOD Nutrition",
+          body: "Food and lifestyle guidance to support overall wellbeing alongside appropriate medical care.",
+        },
+        {
+          title: "Diabetes Nutrition",
+          body: "Individualised meal-planning support to help manage dietary choices alongside prescribed treatment.",
+        },
+        {
+          title: "Thyroid Nutrition",
+          body: "Nutrition guidance tailored to individual needs and medical advice.",
+        },
+        {
+          title: "Pregnancy-Related Nutrition",
+          body: "Support for pregnancy-related dietary needs.",
+        },
+        {
+          title: "Personalised Diet Plans",
+          body: "Dietary recommendations based on individual goals, food preferences, lifestyle and consultation findings.",
+        },
+      ],
+    },
+    approach: {
+      heading: "Our Approach",
+      items: [
+        {
+          title: "Personalised Guidance",
+          body: "Recommendations are tailored to individual circumstances, preferences and goals.",
+        },
+        {
+          title: "Practical Food Choices",
+          body: "We focus on achievable dietary habits and familiar foods that fit everyday routines.",
+        },
+        {
+          title: "Sustainable Habits",
+          body: "We encourage consistent, long-term lifestyle improvements rather than extreme or restrictive approaches.",
+        },
+        {
+          title: "Individual Attention",
+          body: "Nutritional needs, concerns and progress can guide consultation and follow-up, where available.",
+        },
+      ],
+    },
+    why: {
+      heading: "Why Choose Varsha’s Diet Clinic?",
+      items: [
+        "Personalised nutrition guidance based on individual needs.",
+        "Practical dietary recommendations for everyday life.",
+        "Support for a range of nutrition and weight-management goals.",
+        "A focus on balanced eating and sustainable lifestyle habits.",
+        "Convenient access to the clinic in Bibwewadi, Pune.",
+      ],
+    },
+    meet: {
+      heading: "Meet Dt. Varsha Ladkat",
+      body: "Dt. Varsha Ladkat is associated with Varsha’s Diet Clinic, where the focus is on helping individuals understand their dietary needs and make informed food choices.",
+      photo: "/images/hero/varsha-photo.jpeg",
+      photoAlt: "Dt. Varsha Ladkat, dietitian at Varsha’s Diet Clinic in Bibwewadi, Pune",
+      // MISSING — add only verified qualifications, experience, certifications and memberships.
+      // The section stays hidden until Varsha confirms them. Do not publish unconfirmed credentials.
+      credentials: {
+        visible: false,
+        heading: "Qualifications and experience",
+        items: [] as string[],
+      },
+    },
+    cta: {
+      heading: "Start Your Nutrition Journey",
+      paragraphs: [
+        "Whether your goal is to improve your eating habits, manage your weight, or receive personalised dietary guidance, the first step is understanding your individual needs.",
+        "Contact Varsha’s Diet Clinic in Bibwewadi, Pune, to enquire about a consultation and explore the nutrition guidance that may be suitable for you.",
+      ],
+      primary: {
+        label: "Book a Consultation",
+        message: "Hi Varsha, I'd like to book a consultation.",
+      },
+      secondary: { label: "Chat on WhatsApp" },
+    },
+    disclaimer:
+      "Nutrition guidance supports overall health and does not replace medical diagnosis, prescribed treatment or advice from your treating healthcare professional.",
+  },
+
   labels: {
     email: "Email",
     phone: "WhatsApp",
@@ -718,7 +859,7 @@ export const content = {
   // Clinic & location — address, hours, map, and contact from the notes and pricing sheet. No clinic photos were provided.
   location: {
     visible: true,
-    heading: "Clinic and Location",
+    heading: "Visit Varsha Diet Clinic in Bibwewadi, Pune",
     clinicName: "Varsha Diet Clinic",
     addressLines: [
       "Shop no 02, Plot. 64, Mahesh Society",
@@ -770,6 +911,7 @@ export const content = {
       { label: "Results", href: "/#results" },
       { label: "Diet Plans", href: "/packages" },
       { label: "High-Protein Recipes", href: "/recipes" },
+      { label: "About Us", href: "/about-us" },
     ],
     copyright: "© Varshas diet clinic",
     credit: "Website by Mayur",

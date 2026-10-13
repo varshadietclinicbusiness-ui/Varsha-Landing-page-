@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@/components/analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { content } from "@/data/content";
+import { pageMetadata, searchConsoleVerification, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -18,8 +20,10 @@ const theBold = localFont({
 });
 
 export const metadata: Metadata = {
-  title: content.site.clinicName,
-  description: content.site.tagline,
+  ...pageMetadata("home"),
+  metadataBase: new URL(siteUrl()),
+  verification: searchConsoleVerification(),
+  applicationName: content.site.clinicName,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -28,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${nunito.className} min-h-dvh bg-paper font-sans text-ink antialiased`}>
         {children}
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

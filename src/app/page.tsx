@@ -8,10 +8,15 @@ import { PricingSnapshot } from "@/components/pricing-snapshot";
 import { RecipesTeaser } from "@/components/recipes-teaser";
 import { Testimonials } from "@/components/testimonials";
 import { VideoStories } from "@/components/video-stories";
+import { localBusinessJsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()).replace(/</g, "\\u003c") }}
+      />
       <Hero />
       <div>
         <MobileNav />
