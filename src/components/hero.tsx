@@ -66,13 +66,11 @@ export function Hero() {
           className="absolute top-0 left-[-6.05%] h-full w-[122.75%] max-w-none object-cover"
         />
       </div>
-      <div className="pointer-events-none absolute left-0 z-0 hidden overflow-hidden w1920:top-[70%] w1920:block w1920:h-[525px] w1920:w-1/2">
-        <img
-          src={hero.decorative1920}
-          alt=""
-          className="absolute top-0 left-[-6.05%] h-full w-[122.75%] max-w-none object-cover"
-        />
-      </div>
+      <img
+        src={hero.decorative1920}
+        alt=""
+        className="pointer-events-none absolute bottom-[-1.2vw] left-[-0.73vw] z-0 hidden h-auto w-[59.17vw] max-w-none w1920:block"
+      />
     </section>
   );
 }
