@@ -233,7 +233,6 @@ main {
 
 /* Light sweep across the orange buttons: left to right, then a pause. Transform only. */
 .shine {
-  position: relative;
   overflow: hidden;
   isolation: isolate;
 }

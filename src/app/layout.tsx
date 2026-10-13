@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@/components/analytics";
 import { SiteFooter } from "@/components/site-footer";
+import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { content } from "@/data/content";
 import { pageMetadata, searchConsoleVerification, siteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
         {children}
         <SiteFooter />
+        <WhatsAppFab />
         <Analytics />
       </body>
     </html>

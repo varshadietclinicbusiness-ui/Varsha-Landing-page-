@@ -50,7 +50,7 @@ export function Hero() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="pressable shine inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:w-[266px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
+              className="pressable shine relative inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:w-[266px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
             >
               <WhatsAppIcon className="size-6 text-white" />
               {hero.primaryCta.label}
