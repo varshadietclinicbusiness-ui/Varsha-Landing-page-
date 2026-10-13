@@ -97,9 +97,9 @@ function ResultsStage() {
         if (event.key === "ArrowRight") goTo(index + 1, 1);
         if (event.key === "ArrowLeft") goTo(index - 1, -1);
       }}
-      className="scroll-mt-[78px] bg-paper py-10 lg:scroll-mt-[88px] lg:py-20"
+      className="relative scroll-mt-[78px] bg-paper py-10 lg:scroll-mt-[88px] lg:py-14"
     >
-      <div className="flex flex-col items-center gap-8 lg:gap-12">
+      <div className="flex flex-col items-center gap-8 lg:gap-6">
         <Reveal className="shell flex w-full flex-col items-center gap-2 text-center text-ink lg:gap-4 lg:px-0">
           <h2 className="font-display w-full text-[28px] leading-none lg:text-[50px]">{section.heading}</h2>
           <p className="max-w-[302px] text-[16px] leading-[1.3] font-semibold text-pretty lg:max-w-[620px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
@@ -111,7 +111,7 @@ function ResultsStage() {
           {/* Stage */}
           <div className="relative w-full max-w-[1040px]">
             <div
-              className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(155deg,#e9f3e1_0%,#f8fcf3_52%,#fff3e1_100%)] px-4 pt-8 pb-12 shadow-[0_28px_60px_-24px_rgba(20,61,0,0.28)] ring-1 ring-[#dde9d2] lg:rounded-[44px] lg:px-12 lg:pt-14 lg:pb-20"
+              className="relative pt-4 pb-8 lg:pt-6 lg:pb-10"
               onPointerDown={(event) => {
                 swipe.current = { startX: event.clientX, startY: event.clientY, swiped: false };
               }}
@@ -127,20 +127,20 @@ function ResultsStage() {
             >
               <span
                 aria-hidden
-                className="pointer-events-none absolute -top-16 -left-12 size-44 rounded-full bg-[#d8e9c9] lg:-top-24 lg:-left-20 lg:size-80"
+                className="pointer-events-none absolute top-0 left-[4%] size-44 rounded-full bg-[#e3f0d6] lg:left-[12%] lg:size-72"
               />
               <span
                 aria-hidden
-                className="pointer-events-none absolute -right-14 -bottom-16 size-48 rounded-full bg-[#ffe2c2] lg:-right-24 lg:-bottom-28 lg:size-96"
+                className="pointer-events-none absolute right-[2%] bottom-2 size-48 rounded-full bg-[#ffe9d0] lg:right-[10%] lg:bottom-0 lg:size-80"
               />
 
-              <div className="relative mx-auto flex w-full max-w-[820px] items-center justify-center gap-3 lg:gap-14">
+              <div className="relative mx-auto flex w-full max-w-[820px] items-center justify-center gap-3 lg:gap-16">
                 <motion.div
                   key={`before-${index}`}
                   initial={photoInitial(-56)}
                   animate={{ opacity: 1, transform: "translate3d(0px, 0px, 0px)" }}
                   transition={{ duration: 0.6, ease: EASE }}
-                  className="w-1/2 max-w-[380px] -rotate-2 lg:-rotate-3"
+                  className="w-1/2 max-w-[380px] -rotate-2 lg:w-[min(300px,36vh)] lg:-rotate-3"
                 >
                   <StagePhoto
                     src={client.before}
@@ -168,7 +168,7 @@ function ResultsStage() {
                   initial={photoInitial(56)}
                   animate={{ opacity: 1, transform: "translate3d(0px, 0px, 0px)" }}
                   transition={{ duration: 0.6, ease: EASE }}
-                  className="w-1/2 max-w-[380px] rotate-2 lg:rotate-3"
+                  className="w-1/2 max-w-[380px] rotate-2 lg:w-[min(300px,36vh)] lg:rotate-3"
                 >
                   <StagePhoto
                     src={client.after}
@@ -190,7 +190,7 @@ function ResultsStage() {
             <p
               key={`caption-${index}`}
               aria-live="polite"
-              className="relative z-30 -mt-7 min-h-[3.4em] w-[calc(100%-2rem)] max-w-[600px] rounded-[20px] bg-white px-5 py-3.5 text-center text-[16px] leading-[1.4] font-bold text-balance text-ink shadow-[0_16px_34px_-14px_rgba(20,61,0,0.38)] ring-1 ring-[#dde9d2] lg:-mt-9 lg:w-full lg:max-w-[720px] lg:rounded-[28px] lg:px-8 lg:py-5 lg:text-[20px]"
+              className="relative z-30 -mt-5 min-h-[3.4em] w-[calc(100%-2rem)] max-w-[600px] rounded-[20px] bg-white px-5 py-3.5 text-center text-[16px] leading-[1.4] font-bold text-balance text-ink shadow-[0_16px_34px_-14px_rgba(20,61,0,0.38)] ring-1 ring-[#dde9d2] lg:-mt-7 lg:w-fit lg:max-w-[720px] lg:rounded-[28px] lg:px-8 lg:py-5 lg:text-[20px]"
             >
               {caption}
             </p>
