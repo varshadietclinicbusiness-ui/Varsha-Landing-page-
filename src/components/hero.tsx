@@ -23,7 +23,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-20 flex w-full shrink-0 flex-col items-center gap-5 px-4 pt-6 lg:absolute lg:top-0 lg:left-0 lg:w-[577px] lg:items-start lg:gap-6 lg:px-0 desk:top-[48px] desk:left-[40px] w1440:top-[48px] w1440:left-[68px] w1920:top-[56px] w1920:left-[192px]">
+      <div className="relative z-20 flex w-full shrink-0 flex-col items-center gap-5 px-4 pt-6 lg:absolute lg:top-0 lg:left-0 lg:w-[577px] lg:items-start lg:gap-10 lg:px-0 desk:top-[80px] desk:left-[40px] w1440:top-[80px] w1440:left-[68px] w1920:top-[100px] w1920:left-[192px]">
         <div className="flex w-full flex-col items-center gap-2 text-center text-ink lg:items-start lg:gap-6 lg:text-left">
           {showHeadline ? (
             <h1 className="font-display text-[32px] leading-none tracking-[-0.32px] lg:text-[64px] lg:tracking-[-0.64px] w1920:text-[66px] w1920:tracking-[-0.66px]">
@@ -59,16 +59,20 @@ export function Hero() {
         </div>
       </div>
 
-      <img
-        src={hero.decorative1440}
-        alt=""
-        className="pointer-events-none absolute bottom-0 left-[-8px] z-0 hidden h-auto w-[720px] max-w-none desk:block w1440:block"
-      />
-      <img
-        src={hero.decorative1920}
-        alt=""
-        className="pointer-events-none absolute bottom-0 left-[-32px] z-0 hidden h-auto w-[1000px] max-w-none w1920:block"
-      />
+      <div className="pointer-events-none absolute left-0 z-0 hidden overflow-hidden desk:top-[77%] desk:block desk:h-[min(389px,42%)] desk:w-1/2 w1440:top-[76.72%] w1440:block w1440:h-[389px] w1440:w-[713px] w1920:hidden">
+        <img
+          src={hero.decorative1440}
+          alt=""
+          className="absolute top-0 left-[-6.05%] h-full w-[122.75%] max-w-none object-cover"
+        />
+      </div>
+      <div className="pointer-events-none absolute left-0 z-0 hidden overflow-hidden w1920:top-[70%] w1920:block w1920:h-[525px] w1920:w-1/2">
+        <img
+          src={hero.decorative1920}
+          alt=""
+          className="absolute top-0 left-[-6.05%] h-full w-[122.75%] max-w-none object-cover"
+        />
+      </div>
     </section>
   );
 }
