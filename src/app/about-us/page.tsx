@@ -132,7 +132,7 @@ export default function AboutPage() {
                 href={whatsappHref(about.cta.primary.message)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pressable inline-flex h-12 items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:min-w-[266px] lg:text-[22px]"
+                className="pressable shine inline-flex h-12 items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:min-w-[266px] lg:text-[22px]"
               >
                 <WhatsAppIcon className="size-6 text-white" />
                 {about.cta.primary.label}

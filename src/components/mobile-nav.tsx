@@ -66,7 +66,7 @@ export function MobileNav() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="pressable inline-flex shrink-0 items-center justify-center gap-[11px] rounded-[8px] bg-cta px-6 py-4 text-[22px] leading-[1.2] font-bold tracking-[-0.3px] text-white"
+              className="pressable shine inline-flex shrink-0 items-center justify-center gap-[11px] rounded-[8px] bg-cta px-6 py-4 text-[22px] leading-[1.2] font-bold tracking-[-0.3px] text-white"
             >
               <WhatsAppIcon className="size-6 text-white" />
               {content.hero.primaryCta.label}
@@ -112,7 +112,7 @@ export function MobileNav() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pressable inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 py-3 text-[16px] leading-[1.3] font-bold text-white"
+                className="pressable shine inline-flex items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 py-3 text-[16px] leading-[1.3] font-bold text-white"
               >
                 <WhatsAppIcon className="size-6 text-white" />
                 {content.hero.primaryCta.label}
