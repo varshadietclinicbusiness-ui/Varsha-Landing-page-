@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { MobileNav } from "@/components/mobile-nav";
+import { Reveal } from "@/components/motion";
 import { PlanCatalog } from "@/components/plan-catalog";
 import { content } from "@/data/content";
 
@@ -24,15 +25,10 @@ export default function PackagesPage() {
 
   return (
     <main className="relative bg-plans pt-0">
-      <img
-        src={content.recipes.pagePlate}
-        alt=""
-        className="pointer-events-none absolute top-[-146px] left-[-197px] z-0 hidden h-[721px] w-[711px] object-contain lg:block"
-      />
       <div className="relative z-10">
         <MobileNav />
         <div className="flex flex-col items-center gap-8 px-0 pt-8 pb-12 lg:gap-10 lg:pt-14 lg:pb-20">
-          <div className="shell flex w-full flex-col items-center gap-4 text-center text-ink">
+          <Reveal className="shell flex w-full flex-col items-center gap-4 text-center text-ink">
             <h1 className="font-display text-[28px] leading-none lg:text-[50px]">{content.pricing.heading}</h1>
             <p className="max-w-[360px] text-[16px] leading-[1.3] font-semibold lg:max-w-[640px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
               {content.pricing.subtext}
@@ -56,7 +52,7 @@ export default function PackagesPage() {
                 );
               })}
             </div>
-          </div>
+          </Reveal>
           <PlanCatalog plans={plans} layout="grid" />
         </div>
       </div>

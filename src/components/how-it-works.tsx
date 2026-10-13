@@ -1,3 +1,4 @@
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion";
 import { content } from "@/data/content";
 
 export function HowItWorks() {
@@ -6,18 +7,18 @@ export function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-mint px-5 py-8 text-ink lg:px-[100px] lg:py-20">
       <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-8 lg:max-w-none lg:gap-9">
-        <div className="flex w-full flex-col items-center gap-2 text-center lg:gap-4">
+        <Reveal className="flex w-full flex-col items-center gap-2 text-center lg:gap-4">
           <h2 className="font-display text-[28px] leading-none tracking-[-0.56px] lg:text-[48px] lg:tracking-normal">
             {content.howItWorks.heading}
           </h2>
           <p className="max-w-[274px] text-[16px] leading-[1.3] font-semibold lg:max-w-[600px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
             {content.howItWorks.subtext}
           </p>
-        </div>
+        </Reveal>
 
-        <ol className="flex w-full flex-col gap-5 lg:flex-row lg:items-start desk:justify-between desk:gap-8 w1440:justify-between w1440:gap-8 w1920:justify-center w1920:gap-[120px]">
+        <RevealGroup as="ol" stagger={0.14} className="flex w-full flex-col gap-5 lg:flex-row lg:items-start desk:justify-between desk:gap-8 w1440:justify-between w1440:gap-8 w1920:justify-center w1920:gap-[120px]">
           {content.howItWorks.steps.map((step) => (
-            <li key={step.title} className="flex items-start gap-6 overflow-visible lg:w-[231px] lg:flex-none lg:flex-col lg:gap-1">
+            <RevealItem as="li" key={step.title} distance={44} className="flex items-start gap-6 overflow-visible lg:w-[231px] lg:flex-none lg:flex-col lg:gap-1">
               <div className="flex w-[150px] shrink-0 items-start justify-start overflow-visible lg:w-full">
                 <img
                   src={step.number}
@@ -44,9 +45,9 @@ export function HowItWorks() {
                   {step.body}
                 </p>
               </div>
-            </li>
+            </RevealItem>
           ))}
-        </ol>
+        </RevealGroup>
       </div>
     </section>
   );

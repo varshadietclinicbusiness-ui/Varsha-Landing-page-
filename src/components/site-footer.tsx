@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/motion";
 import { content, whatsappHref } from "@/data/content";
 
 export function SiteFooter() {
@@ -16,7 +17,7 @@ export function SiteFooter() {
         height={252}
         className="pointer-events-none absolute right-0 -bottom-[90px] h-[252px] w-[421px] object-contain opacity-[0.08] lg:h-[320px] lg:w-[534px]"
       />
-      <div className="relative shell flex w-full flex-col items-center gap-8 lg:gap-12">
+      <Reveal distance={28} className="relative shell flex w-full flex-col items-center gap-8 lg:gap-12">
         <div className="flex w-full flex-col items-start gap-10 lg:grid lg:grid-cols-4 lg:items-start lg:gap-12">
           <div className="order-last flex flex-col items-start gap-5 lg:order-first">
             <Image src={mark} alt={content.site.clinicName} width={158} height={95} className="h-[95px] w-[158px]" />
@@ -84,7 +85,7 @@ export function SiteFooter() {
           </div>
         </div>
         <p className="text-center text-[16px] leading-[1.3] text-[#9eaba3] lg:text-[14px]">{copyright}</p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

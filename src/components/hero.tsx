@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { MISSING, content, whatsappHref } from "@/data/content";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
@@ -11,7 +12,7 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-dvh flex-col overflow-hidden bg-paper pb-8 lg:h-dvh lg:min-h-0 lg:pb-0">
-      <div className="relative z-10 min-h-[220px] w-full flex-[1_1_0] lg:absolute lg:inset-y-0 lg:min-h-0 desk:right-0 desk:w-1/2 w1440:left-[713px] w1440:w-[745px] w1920:right-0 w1920:left-auto w1920:w-1/2">
+      <div className="enter-right relative z-10 min-h-[220px] w-full flex-[1_1_0] lg:absolute lg:inset-y-0 lg:min-h-0 desk:right-0 desk:w-1/2 w1440:left-[713px] w1440:w-[745px] w1920:right-0 w1920:left-auto w1920:w-1/2">
         <Image
           src={hero.image}
           alt={hero.imageAlt}
@@ -24,7 +25,10 @@ export function Hero() {
       </div>
 
       <div className="relative z-20 flex w-full shrink-0 flex-col items-center gap-5 px-4 pt-6 lg:absolute lg:top-0 lg:left-0 lg:w-[577px] lg:items-start lg:gap-10 lg:px-0 desk:top-[80px] desk:left-[40px] w1440:top-[80px] w1440:left-[68px] w1920:top-[100px] w1920:left-[192px]">
-        <div className="flex w-full flex-col items-center gap-2 text-center text-ink lg:items-start lg:gap-6 lg:text-left">
+        <div
+          className="enter-left flex w-full flex-col items-center gap-2 text-center text-ink lg:items-start lg:gap-6 lg:text-left"
+          style={{ "--enter-delay": "0.15s" } as CSSProperties}
+        >
           {showHeadline ? (
             <h1 className="font-display text-[32px] leading-none tracking-[-0.32px] lg:text-[64px] lg:tracking-[-0.64px] w1920:text-[66px] w1920:tracking-[-0.66px]">
               {hero.headline}
@@ -37,7 +41,10 @@ export function Hero() {
           ) : null}
         </div>
 
-        <div className="flex w-full flex-col items-center gap-4 lg:w-full lg:flex-row lg:items-stretch lg:justify-start lg:gap-5">
+        <div
+          className="enter-up flex w-full flex-col items-center gap-4 lg:w-full lg:flex-row lg:items-stretch lg:justify-start lg:gap-5"
+          style={{ "--enter-delay": "0.45s" } as CSSProperties}
+        >
           {content.whatsapp.visible ? (
             <a
               href={whatsappHref()}
@@ -59,7 +66,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute left-0 z-0 hidden overflow-hidden desk:top-[77%] desk:block desk:h-[min(389px,42%)] desk:w-1/2 w1440:top-[76.72%] w1440:block w1440:h-[389px] w1440:w-[713px] w1920:hidden">
+      <div
+        className="enter-up-far pointer-events-none absolute left-0 z-0 hidden overflow-hidden desk:top-[77%] desk:block desk:h-[min(389px,42%)] desk:w-1/2 w1440:top-[76.72%] w1440:block w1440:h-[389px] w1440:w-[713px] w1920:hidden"
+        style={{ "--enter-delay": "0.6s" } as CSSProperties}
+      >
         <img
           src={hero.decorative1440}
           alt=""
@@ -69,7 +79,8 @@ export function Hero() {
       <img
         src={hero.decorative1920}
         alt=""
-        className="pointer-events-none absolute bottom-[-1.2vw] left-[-0.73vw] z-0 hidden h-auto w-[59.17vw] max-w-none w1920:block"
+        className="enter-up-far pointer-events-none absolute bottom-[-1.2vw] left-[-0.73vw] z-0 hidden h-auto w-[59.17vw] max-w-none w1920:block"
+        style={{ "--enter-delay": "0.6s" } as CSSProperties}
       />
     </section>
   );

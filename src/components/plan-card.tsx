@@ -75,7 +75,7 @@ export function PlanCard({
 
   return (
     <article
-      className={`flex flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${
+      className={`lift flex flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${
         compact ? "h-[397px] w-[264px] shrink-0 lg:h-auto lg:w-[366px] lg:gap-5 lg:pb-5" : "w-full max-w-[342px] lg:w-[366px] lg:max-w-[366px] lg:shrink-0 lg:gap-5 lg:pb-5"
       }`}
     >

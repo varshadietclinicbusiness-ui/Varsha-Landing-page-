@@ -30,6 +30,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${nunito.variable} ${theBold.variable}`}>
       <body className={`${nunito.className} min-h-dvh bg-paper font-sans text-ink antialiased`}>
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         {children}
         <SiteFooter />
         <Analytics />

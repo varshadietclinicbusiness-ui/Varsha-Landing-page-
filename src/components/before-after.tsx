@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Reveal } from "@/components/motion";
 import { MISSING, content } from "@/data/content";
 
 const CARD_GAP = 32;
@@ -70,14 +71,14 @@ function ResultsCarousel() {
   return (
     <section id="results" className="scroll-mt-[78px] bg-paper py-8 lg:scroll-mt-[88px] lg:px-16 lg:py-10 w1920:px-20 w1920:py-20">
       <div className="flex flex-col items-center gap-8 lg:gap-10">
-        <div className="shell flex w-full flex-col items-center gap-2 text-center text-ink lg:gap-4 lg:px-0">
+        <Reveal className="shell flex w-full flex-col items-center gap-2 text-center text-ink lg:gap-4 lg:px-0">
           <h2 className="font-display w-full text-[28px] leading-none lg:text-[44px]">{section.heading}</h2>
           <p className="max-w-[302px] text-[16px] leading-[1.3] font-semibold lg:max-w-[620px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
             {section.subtext}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="relative w-full lg:hidden">
+        <Reveal from="right" delay={0.1} className="relative w-full lg:hidden">
           <div
             ref={scrollerRef}
             className="flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-pl-4 pl-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -151,10 +152,10 @@ function ResultsCarousel() {
               </button>
             </>
           ) : null}
-        </div>
+        </Reveal>
 
         {desktopClient ? (
-          <div className="hidden w-full flex-col items-center gap-[31px] lg:flex">
+          <Reveal delay={0.1} scale={0.97} className="hidden w-full flex-col items-center gap-[31px] lg:flex">
             <div className="flex items-center justify-center gap-5">
               {clients.length > 1 ? (
                 <button
@@ -220,7 +221,7 @@ function ResultsCarousel() {
             {desktopCaption ? (
               <p className="text-center text-[18px] leading-[1.4] font-bold text-ink">{desktopCaption}</p>
             ) : null}
-          </div>
+          </Reveal>
         ) : null}
       </div>
 

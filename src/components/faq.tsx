@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion";
 import { content } from "@/data/content";
 
 export function Faq() {
@@ -18,19 +19,21 @@ export function Faq() {
       className="scroll-mt-[78px] bg-mint px-4 pt-8 pb-10 text-ink lg:scroll-mt-[88px] lg:py-20 desk:px-[120px] w1440:px-[160px] w1920:px-[320px]"
     >
       <div className="mx-auto flex w-full max-w-[80rem] flex-col items-center gap-6 lg:max-w-none lg:gap-12">
-        <div className="flex w-full flex-col items-center gap-3 text-center lg:gap-6">
+        <Reveal className="flex w-full flex-col items-center gap-3 text-center lg:gap-6">
           <h2 className="font-display text-[28px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.faq.heading}</h2>
           <p className="max-w-[520px] text-[16px] leading-[1.3] font-semibold lg:text-[20px] lg:leading-[1.4]">
             {content.faq.subtext}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="flex w-full flex-col overflow-hidden rounded-[20px] lg:gap-3 lg:overflow-visible lg:rounded-none">
+        <RevealGroup stagger={0.08} className="flex w-full flex-col overflow-hidden rounded-[20px] lg:gap-3 lg:overflow-visible lg:rounded-none">
           {items.map((item, index) => {
             const isOpen = open === index;
             return (
-              <div
+              <RevealItem
                 key={item.question}
+                distance={24}
+                scale={1}
                 className={`border-b border-[#acb9a7] bg-[#deebd9] last:border-b-0 lg:border-0 ${
                   isOpen ? "lg:rounded-[32px]" : "lg:rounded-[100px]"
                 }`}
@@ -68,10 +71,10 @@ export function Faq() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

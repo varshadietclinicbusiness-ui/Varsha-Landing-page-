@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal } from "@/components/motion";
 import { content } from "@/data/content";
 
 export function Location() {
@@ -12,7 +13,7 @@ export function Location() {
     <section id="location" className="scroll-mt-[78px] bg-paper px-4 py-8 text-ink lg:scroll-mt-[88px] lg:px-[max(5rem,calc((100%-80rem)/2))] lg:py-20">
       <div className="mx-auto flex w-full max-w-[80rem] flex-col gap-8 lg:gap-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-16">
-          <div className="flex min-w-0 flex-1 flex-col gap-5">
+          <Reveal from="left" className="flex min-w-0 flex-1 flex-col gap-5">
             <h2 className="font-display text-center text-[28px] leading-none lg:text-left lg:text-[50px]">{heading}</h2>
             <div className="flex flex-1 flex-col gap-4 lg:gap-8">
               <div className="flex flex-col items-start gap-2">
@@ -65,9 +66,9 @@ export function Location() {
                 {content.talkToUs.heading}
               </h2>
             ) : null}
-          </div>
+          </Reveal>
 
-          <div className="aspect-[542/529] w-full overflow-hidden rounded-[12px] bg-[#e1e1e1] lg:aspect-auto lg:min-h-[560px] lg:w-[min(100%,38rem)] lg:flex-none">
+          <Reveal from="right" delay={0.12} className="aspect-[542/529] w-full overflow-hidden rounded-[12px] bg-[#e1e1e1] lg:aspect-auto lg:min-h-[560px] lg:w-[min(100%,38rem)] lg:flex-none">
             <iframe
               title={heading}
               src={embedSrc}
@@ -75,7 +76,7 @@ export function Location() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

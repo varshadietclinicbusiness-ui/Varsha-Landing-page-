@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal } from "@/components/motion";
 import { content } from "@/data/content";
 
 export function Testimonials() {
@@ -10,16 +11,16 @@ export function Testimonials() {
   return (
     <section id="reviews" className="overflow-x-clip bg-reviews py-8 lg:py-20">
       <div className="flex flex-col items-center gap-6 lg:gap-10">
-        <div className="shell flex w-full flex-col items-center gap-2 text-center text-ink">
+        <Reveal className="shell flex w-full flex-col items-center gap-2 text-center text-ink">
           <h2 className="font-display text-[28px] leading-none lg:text-[50px]">
             {content.testimonials.reviewsHeading}
           </h2>
           <p className="max-w-[280px] text-[16px] leading-[1.3] font-semibold lg:max-w-[640px] lg:text-[20px] lg:leading-[1.4]">
             {content.testimonials.subtext}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="w-full overflow-hidden py-5">
+        <Reveal delay={0.1} className="w-full overflow-hidden py-5">
           <div className="marquee-track-slow flex w-max gap-4 px-4 lg:gap-6">
             {loop.map((item, index) => (
               <article
@@ -55,7 +56,7 @@ export function Testimonials() {
               </article>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

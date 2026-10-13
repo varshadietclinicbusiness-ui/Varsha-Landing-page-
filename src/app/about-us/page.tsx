@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MobileNav } from "@/components/mobile-nav";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { content, whatsappHref } from "@/data/content";
 import { pageMetadata } from "@/lib/seo";
@@ -9,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata("about");
 
 const card =
-  "flex flex-col gap-2 rounded-[12px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] lg:rounded-[20px] lg:p-6";
+  "lift flex flex-col gap-2 rounded-[12px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] lg:rounded-[20px] lg:p-6";
 const h2 = "font-display text-[28px] leading-none lg:text-[44px]";
 const h3 = "text-[20px] leading-[1.2] font-extrabold tracking-[-0.2px] lg:text-[22px]";
 const body = "text-[16px] leading-[1.4] font-medium text-ink-muted lg:text-[18px]";
@@ -24,6 +25,7 @@ export default function AboutPage() {
       <MobileNav />
 
       <section className="shell flex flex-col items-center gap-4 pt-8 pb-8 text-center lg:gap-6 lg:pt-14 lg:pb-12">
+        <Reveal className="flex flex-col items-center gap-4 lg:gap-6">
         <h1 className="font-display text-[32px] leading-none lg:text-[56px]">{about.heading}</h1>
         <h2 className="max-w-[720px] text-[20px] leading-[1.2] font-bold text-duration lg:text-[28px]">
           {about.intro.heading}
@@ -35,52 +37,60 @@ export default function AboutPage() {
             </p>
           ))}
         </div>
+        </Reveal>
       </section>
 
       <section className="shell flex flex-col gap-6 pt-4 pb-10 lg:gap-10 lg:pb-16">
-        <div className="flex flex-col items-center gap-2 text-center">
+        <Reveal className="flex flex-col items-center gap-2 text-center">
           <h2 className={h2}>{about.services.heading}</h2>
           <p className="max-w-[640px] text-[16px] leading-[1.4] font-semibold lg:text-[20px]">{about.services.intro}</p>
-        </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        </Reveal>
+        <RevealGroup as="ul" stagger={0.09} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {about.services.items.map((item) => (
-            <li key={item.title} className={card}>
+            <RevealItem as="li" key={item.title} className={card}>
               <h3 className={h3}>{item.title}</h3>
               <p className={body}>{item.body}</p>
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealGroup>
       </section>
 
       <section className="bg-mint">
         <div className="shell flex flex-col gap-6 py-10 lg:gap-10 lg:py-16">
-          <h2 className={`${h2} text-center`}>{about.approach.heading}</h2>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <Reveal as="h2" className={`${h2} text-center`}>{about.approach.heading}</Reveal>
+          <RevealGroup as="ul" stagger={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {about.approach.items.map((item) => (
-              <li key={item.title} className={card}>
+              <RevealItem as="li" key={item.title} className={card}>
                 <h3 className={h3}>{item.title}</h3>
                 <p className={body}>{item.body}</p>
-              </li>
+              </RevealItem>
             ))}
-          </ul>
+          </RevealGroup>
         </div>
       </section>
 
       <section className="shell flex flex-col items-center gap-6 py-10 lg:gap-10 lg:py-16">
-        <h2 className={`${h2} text-center`}>{about.why.heading}</h2>
-        <ul className="flex w-full max-w-[720px] flex-col gap-3">
+        <Reveal as="h2" className={`${h2} text-center`}>{about.why.heading}</Reveal>
+        <RevealGroup as="ul" stagger={0.08} className="flex w-full max-w-[720px] flex-col gap-3">
           {about.why.items.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-[16px] leading-[1.4] font-semibold lg:text-[20px]">
+            <RevealItem
+              as="li"
+              key={item}
+              from="left"
+              distance={32}
+              scale={1}
+              className="flex items-start gap-3 text-[16px] leading-[1.4] font-semibold lg:text-[20px]"
+            >
               <Image src={content.recipes.checkIcon} alt="" width={20} height={20} className="mt-1 size-5 shrink-0" />
               {item}
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealGroup>
       </section>
 
       <section className="bg-reviews">
         <div className="shell grid items-center gap-6 py-10 lg:grid-cols-2 lg:gap-16 lg:py-16">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[360px] overflow-hidden rounded-[20px] lg:max-w-[440px]">
+          <Reveal from="left" scale={0.97} className="relative mx-auto aspect-[4/5] w-full max-w-[360px] overflow-hidden rounded-[20px] lg:max-w-[440px]">
             <Image
               src={about.meet.photo}
               alt={about.meet.photoAlt}
@@ -88,8 +98,8 @@ export default function AboutPage() {
               sizes="(min-width: 1024px) 440px, 360px"
               className="object-cover object-[center_20%]"
             />
-          </div>
-          <div className="flex flex-col gap-4">
+          </Reveal>
+          <Reveal from="right" delay={0.12} className="flex flex-col gap-4">
             <h2 className={h2}>{about.meet.heading}</h2>
             <p className="text-[16px] leading-[1.5] font-medium lg:text-[20px]">{about.meet.body}</p>
             {about.meet.credentials.visible && about.meet.credentials.items.length > 0 ? (
@@ -102,12 +112,12 @@ export default function AboutPage() {
                 </ul>
               </div>
             ) : null}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-results">
-        <div className="shell flex flex-col items-center gap-6 py-12 text-center lg:gap-8 lg:py-20">
+        <Reveal className="shell flex flex-col items-center gap-6 py-12 text-center lg:gap-8 lg:py-20">
           <h2 className="font-display text-[32px] leading-none lg:text-[56px]">{about.cta.heading}</h2>
           <div className="flex max-w-[760px] flex-col gap-3">
             {about.cta.paragraphs.map((paragraph) => (
@@ -138,7 +148,7 @@ export default function AboutPage() {
             </div>
           ) : null}
           <p className="max-w-[760px] text-[14px] leading-[1.4] font-medium text-ink-muted">{about.disclaimer}</p>
-        </div>
+        </Reveal>
       </section>
     </main>
   );
