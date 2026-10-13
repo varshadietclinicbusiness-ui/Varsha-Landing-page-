@@ -40,6 +40,14 @@ body {
   color: var(--color-ink);
 }
 
+/* Slide-ins start a little off to the side. Clip, never scroll, so they cannot widen the page.
+   clip (not hidden) keeps the sticky header working. */
+html,
+body,
+main {
+  overflow-x: clip;
+}
+
 .recipe-sheet {
   transform: translateY(0);
   transition: transform 420ms var(--ease-drawer);
