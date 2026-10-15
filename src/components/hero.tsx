@@ -18,7 +18,7 @@ export function Hero() {
           alt={hero.imageAlt}
           fill
           priority
-          quality={100}
+          quality={75}
           sizes="(min-width: 1600px) 50vw, (min-width: 1440px) 745px, (min-width: 1024px) 50vw, 100vw"
           className="object-cover object-[center_18%] lg:object-[center_22%]"
         />
@@ -73,12 +73,16 @@ export function Hero() {
         <img
           src={hero.decorative1440}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="absolute top-0 left-[-6.05%] h-full w-[122.75%] max-w-none object-cover"
         />
       </div>
       <img
         src={hero.decorative1920}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="enter-up-far pointer-events-none absolute bottom-[-1.2vw] left-[-0.73vw] z-0 hidden h-auto w-[59.17vw] max-w-none w1920:block"
         style={{ "--enter-delay": "0.6s" } as CSSProperties}
       />

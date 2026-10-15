@@ -8,7 +8,7 @@ import { MISSING, content } from "@/data/content";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 const SWIPE_DISTANCE = 48;
-const AUTO_ADVANCE_MS = 5000;
+const AUTO_ADVANCE_MS = 3000;
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta";
@@ -33,7 +33,6 @@ function ResultsStage() {
   const thumbs = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
   const { index } = page;
@@ -94,12 +93,13 @@ function ResultsStage() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-advance. Any change of client (by hand too) restarts the 5 second wait.
+  // Auto-advance every 3 seconds. Any change of client (by hand too) restarts the wait.
+  // Keeps going under "reduce motion", where the change is a plain fade.
   useEffect(() => {
-    if (reduce || !hasMany || !inView || hovered || focused || fullscreen !== null) return;
+    if (!hasMany || !inView || focused || fullscreen !== null) return;
     const timer = setTimeout(() => goTo(index + 1, 1), AUTO_ADVANCE_MS);
     return () => clearTimeout(timer);
-  }, [reduce, hasMany, inView, hovered, focused, fullscreen, index, goTo]);
+  }, [hasMany, inView, focused, fullscreen, index, goTo]);
 
   // Photos slide in from the side you are heading to; the After photo wipes in after them.
   const slideIn = page.moved && !reduce;
@@ -135,11 +135,7 @@ function ResultsStage() {
 
         <Reveal delay={0.1} className="flex w-full flex-col items-center px-4 lg:px-8">
           {/* Stage */}
-          <div
-            className="relative w-full max-w-[1040px]"
-            onPointerEnter={(event) => setHovered(event.pointerType === "mouse")}
-            onPointerLeave={() => setHovered(false)}
-          >
+          <div className="relative w-full max-w-[1040px]">
             <div
               className="relative pt-4 pb-8 lg:pt-6 lg:pb-10"
               onPointerDown={(event) => {
@@ -185,11 +181,11 @@ function ResultsStage() {
 
                 <span
                   aria-hidden
-                  className="absolute top-1/2 left-1/2 z-20 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-cta text-white shadow-[0_10px_24px_-8px_rgba(238,124,36,0.7)] ring-[5px] ring-white lg:size-[72px] lg:ring-[7px]"
+                  className="absolute top-1/2 left-1/2 z-20 grid size-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-ink shadow-[0_8px_22px_-8px_rgba(20,61,0,0.45)] ring-1 ring-[#dde9d2] lg:size-14"
                 >
-                  <svg viewBox="0 0 24 24" className="size-6 lg:size-9" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m13 6 6 6-6 6" />
+                  <svg viewBox="0 0 24 24" className="size-5 lg:size-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 12h15" />
+                    <path d="m14 7 5 5-5 5" />
                   </svg>
                 </span>
 
@@ -249,7 +245,7 @@ function ResultsStage() {
                           : "opacity-70 ring-1 ring-black/10 hover:opacity-100"
                       }`}
                     >
-                      <Image src={item.after} alt="" fill sizes="56px" quality={70} className="object-cover object-top" />
+                      <Image src={item.after} alt="" fill sizes="56px" quality={60} className="object-cover object-top" />
                     </button>
                   );
                 })}
@@ -322,7 +318,7 @@ function StagePhoto({
           src={src}
           alt=""
           fill
-          quality={90}
+          quality={75}
           sizes="(min-width: 1024px) 380px, 44vw"
           className="pointer-events-none object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
@@ -356,7 +352,7 @@ function NavButton({ label, dir, onClick }: { label: string; dir: "prev" | "next
 function OverlayPhoto({ src, alt, label }: { src: string; alt: string; label: string }) {
   return (
     <div className="relative aspect-[3/4] w-1/2 overflow-hidden">
-      <Image src={src} alt={alt} fill quality={100} sizes="50vw" className="pointer-events-none object-cover object-top" />
+      <Image src={src} alt={alt} fill quality={85} sizes="50vw" className="pointer-events-none object-cover object-top" />
       <span className="absolute top-2 left-2 rounded-[6px] bg-paper px-2.5 py-1 text-[12px] leading-[1.2] font-semibold text-black">
         {label}
       </span>

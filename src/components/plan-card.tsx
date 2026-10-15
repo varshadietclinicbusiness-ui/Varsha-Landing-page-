@@ -90,7 +90,7 @@ export function PlanCard({
           src={plan.image}
           alt={plan.name}
           fill
-          quality={100}
+          quality={75}
           sizes={compact ? "(min-width: 1024px) 30vw, 264px" : "(min-width: 1024px) 30vw, 100vw"}
           className="object-cover object-center"
         />

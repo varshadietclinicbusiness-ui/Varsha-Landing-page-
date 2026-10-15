@@ -56,7 +56,7 @@ function Stories() {
           className="mx-auto grid w-full max-w-[1152px] grid-cols-2 gap-3 px-4 lg:grid-cols-4 lg:gap-6 lg:px-8"
         >
           {videos.map((video, index) => (
-            <RevealItem key={video.kind === "youtube" ? video.id : video.src} distance={52} scale={0.94}>
+            <RevealItem key={video.id} distance={52} scale={0.94}>
               <VideoTile video={video} paused={active !== null} onOpen={() => setActive(index)} />
             </RevealItem>
           ))}
@@ -77,27 +77,21 @@ function Stories() {
             <img src={content.site.closeIcon} alt="" width={28} height={28} className="size-7 invert" />
           </button>
           <div className="flex max-h-full flex-col items-center gap-3" onClick={(event) => event.stopPropagation()}>
-            {current.kind === "youtube" ? (
-              <>
-                <iframe
-                  src={youTubeSrc(current.id, "full")}
-                  title={content.testimonials.playLabel}
-                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                  allowFullScreen
-                  className="aspect-[9/16] h-[calc(100dvh-5.5rem)] max-h-[860px] max-w-[94vw] rounded-[16px] border-0 bg-black"
-                />
-                <a
-                  href={`https://www.youtube.com/shorts/${current.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`pressable rounded-full bg-white/15 px-4 py-2 text-[14px] font-semibold text-white ${focusRing}`}
-                >
-                  {content.testimonials.watchLabel}
-                </a>
-              </>
-            ) : (
-              <video src={current.src} className="max-h-dvh max-w-full" autoPlay playsInline controls loop />
-            )}
+            <iframe
+              src={youTubeSrc(current.id, "full")}
+              title={content.testimonials.playLabel}
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+              className="aspect-[9/16] h-[calc(100dvh-5.5rem)] max-h-[860px] max-w-[94vw] rounded-[16px] border-0 bg-black"
+            />
+            <a
+              href={`https://www.youtube.com/shorts/${current.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`pressable rounded-full bg-white/15 px-4 py-2 text-[14px] font-semibold text-white ${focusRing}`}
+            >
+              {content.testimonials.watchLabel}
+            </a>
           </div>
         </div>
       ) : null}
@@ -105,10 +99,21 @@ function Stories() {
   );
 }
 
-// The tile plays silently in the background while it is on screen. A click opens it from the start.
+type Connection = { saveData?: boolean; effectiveType?: string };
+
+// A light still image sits in every tile. Only on a good connection, and only while the tile is on
+// screen, does the silent background video replace it. A click opens the video from the start.
 function VideoTile({ video, paused, onOpen }: { video: Video; paused: boolean; onOpen: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [lite, setLite] = useState(false);
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: Connection }).connection;
+    if (connection && (connection.saveData || /^(slow-2g|2g|3g)$/.test(connection.effectiveType ?? ""))) {
+      setLite(true);
+    }
+  }, []);
 
   useEffect(() => {
     const node = ref.current;
@@ -121,28 +126,41 @@ function VideoTile({ video, paused, onOpen }: { video: Video; paused: boolean; o
     return () => observer.disconnect();
   }, []);
 
-  const play = inView && !paused;
+  const play = inView && !paused && !lite;
 
   return (
     <div
       ref={ref}
       className="lift relative aspect-[9/16] w-full overflow-hidden rounded-[16px] bg-[#1f3629] lg:rounded-[20px]"
     >
-      {video.kind === "youtube" ? (
-        play ? (
-          <iframe
-            src={youTubeSrc(video.id, "background")}
-            title={content.testimonials.playLabel}
-            allow="autoplay; encrypted-media"
-            tabIndex={-1}
-            aria-hidden
-            loading="lazy"
-            className="pointer-events-none absolute inset-0 size-full border-0"
-          />
-        ) : null
-      ) : (
-        <FileLoop src={video.src} play={play} />
-      )}
+      <img
+        src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 size-full object-cover"
+      />
+      {play ? (
+        <iframe
+          src={youTubeSrc(video.id, "background")}
+          title={content.testimonials.playLabel}
+          allow="autoplay; encrypted-media"
+          tabIndex={-1}
+          aria-hidden
+          loading="lazy"
+          className="pointer-events-none absolute inset-0 size-full border-0"
+        />
+      ) : null}
+      {lite ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 left-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-[0_8px_22px_-8px_rgba(0,0,0,0.5)]"
+        >
+          <svg viewBox="0 0 24 24" className="size-6" fill="currentColor">
+            <path d="M8.5 5.8v12.4L18.6 12Z" />
+          </svg>
+        </span>
+      ) : null}
       <button
         type="button"
         aria-label={content.testimonials.playLabel}
@@ -150,30 +168,5 @@ function VideoTile({ video, paused, onOpen }: { video: Video; paused: boolean; o
         className={`pressable absolute inset-0 z-10 ${focusRing}`}
       />
     </div>
-  );
-}
-
-function FileLoop({ src, play }: { src: string; play: boolean }) {
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    node.muted = true;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (play && !reduce) void node.play().catch(() => {});
-    else node.pause();
-  }, [play]);
-
-  return (
-    <video
-      ref={ref}
-      src={src}
-      className="absolute inset-0 size-full object-cover"
-      muted
-      loop
-      playsInline
-      preload="metadata"
-    />
   );
 }

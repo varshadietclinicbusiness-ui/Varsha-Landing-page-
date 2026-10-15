@@ -668,13 +668,13 @@ export const content = {
     subtext:
       "Hear from people who transformed their health without giving up the food they love.",
     video: "/images/reviews/client-video.mp4",
-    // Three YouTube Shorts from Varsha's channel plus the client clip. Tiles play muted in the
-    // background; a click opens the video from the start with sound.
+    // Four YouTube Shorts from Varsha's channel. Tiles play muted in the background (a still
+    // image on slow or data-saver connections); a click opens the video from the start with sound.
     videos: [
       { kind: "youtube" as const, id: "hCLNsR6SSxE" },
       { kind: "youtube" as const, id: "XTgW598P3qU" },
       { kind: "youtube" as const, id: "GipyNHeD5wQ" },
-      { kind: "file" as const, src: "/images/reviews/client-video.mp4" },
+      { kind: "youtube" as const, id: "IRY8lf4KrAo" },
     ],
     youtubeChannel: "https://www.youtube.com/@VarshasDietClinic",
     playLabel: "Play video",

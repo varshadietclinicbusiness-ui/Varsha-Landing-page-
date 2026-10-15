@@ -39,7 +39,7 @@ export default function RecipesPage() {
                     src={recipe.image}
                     alt={recipe.name}
                     fill
-                    quality={100}
+                    quality={75}
                     sizes="(min-width: 1024px) 404px, 100vw"
                     className="z-0 object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />

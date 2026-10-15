@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    qualities: [75, 100],
+    // Smaller files first, for slow connections.
+    formats: ["image/avif", "image/webp"],
+    qualities: [60, 75, 85],
   },
 };
 
