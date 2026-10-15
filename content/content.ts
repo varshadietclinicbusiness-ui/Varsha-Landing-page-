@@ -759,7 +759,7 @@ export const content = {
     currency: "INR",
     cta: { label: "View all Plans", href: "/packages" },
     homepagePreviewCount: 5,
-    chatLabel: "Chat on Whatsapp",
+    chatLabel: "Know the price here",
     pagePlates: [
       { src: "/images/hero/dish-5.png", alt: "Indian dish" },
       { src: "/images/hero/dish-4.png", alt: "Indian dish" },

@@ -106,6 +106,9 @@ export function PlanCard({
               {speciality?.blurb ?? ""}
             </p>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-3">
 
           <div className="flex flex-col gap-2">
             <button
@@ -186,7 +189,6 @@ export function PlanCard({
               ))}
             </div>
           </div>
-        </div>
 
         <a
           href={whatsappPlanHref(plan.name, `${durationLabel}, ${content.pricing.modes[mode]}`)}
@@ -208,6 +210,7 @@ export function PlanCard({
             className="size-5 opacity-50"
           />
         </a>
+        </div>
       </div>
     </article>
   );
