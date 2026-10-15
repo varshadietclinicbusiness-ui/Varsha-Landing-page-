@@ -16,6 +16,7 @@ export const content = {
       { label: "Results", href: "#results" },
       { label: "Diet Plans", href: "#diet-plans" },
       { label: "Recipes", href: "#recipes" },
+      { label: "About", href: "/about-us" },
       { label: "FAQ’s", href: "#faq" },
     ],
     menuIcon: "/images/icons/menu.svg",
@@ -476,9 +477,9 @@ export const content = {
         "Looking for a dietitian in Bibwewadi, Pune? Personalised nutrition plans for weight, PCOD, thyroid and diabetes. Book a consultation with Varsha Diet Clinic.",
     },
     packages: {
-      title: "Diet Plans and Prices in Pune | Varsha Diet Clinic",
+      title: "Diet Plans in Pune, In-Person or Online | Varsha",
       description:
-        "Diet plans for thyroid, diabetes, PCOD, GDM, weight gain and weight loss in Pune, with clear prices. Chat with Varsha Diet Clinic on WhatsApp.",
+        "Diet plans for thyroid, diabetes, PCOD, GDM, weight gain and weight loss in Pune. Choose in-person or online consultation with Varsha Diet Clinic.",
     },
     recipes: {
       title: "High-Protein Indian Recipes | Varsha Diet Clinic",
@@ -597,6 +598,26 @@ export const content = {
       "Nutrition guidance supports overall health and does not replace medical diagnosis, prescribed treatment or advice from your treating healthcare professional.",
   },
 
+  // Free first consultation pop-up. Turn off with visible: false.
+  // CONFIRM WITH VARSHA before publishing: she must honour the free first consultation.
+  offer: {
+    visible: true,
+    showAfterMs: 4500,
+    modalMs: 10000,
+    countdownSeconds: 900,
+    heading: "You’ve unlocked your first consultation for free",
+    congrats: "Congratulations!",
+    body: "Your first consultation with Dt. Varsha Ladkat is on us. Claim it before the timer runs out.",
+    priceLabel: "First consultation",
+    freeLabel: "FREE",
+    timerLabel: "Offer ends in",
+    chipLabel: "Free consultation ends in",
+    expiredLabel: "Offer ended",
+    cta: { label: "Claim my free consultation", message: "Hi Varsha, I'd like to claim my free first consultation." },
+    dismissLabel: "Maybe later",
+    closeLabel: "Close",
+  },
+
   labels: {
     email: "Email",
     phone: "WhatsApp",
@@ -647,7 +668,17 @@ export const content = {
     subtext:
       "Hear from people who transformed their health without giving up the food they love.",
     video: "/images/reviews/client-video.mp4",
-    videos: [{ src: "/images/reviews/client-video.mp4" }],
+    // Three YouTube Shorts from Varsha's channel plus the client clip. Tiles play muted in the
+    // background; a click opens the video from the start with sound.
+    videos: [
+      { kind: "youtube" as const, id: "hCLNsR6SSxE" },
+      { kind: "youtube" as const, id: "XTgW598P3qU" },
+      { kind: "youtube" as const, id: "GipyNHeD5wQ" },
+      { kind: "file" as const, src: "/images/reviews/client-video.mp4" },
+    ],
+    youtubeChannel: "https://www.youtube.com/@VarshasDietClinic",
+    playLabel: "Play video",
+    watchLabel: "Watch on YouTube",
     closeLabel: "Close",
     sourceLabel: "Google",
     googleIcon: "/images/icons/google.svg",
@@ -723,7 +754,7 @@ export const content = {
     visible: true,
     heading: "Specialized Diet Plans",
     subtext:
-      "Clinical nutrition tailored to your exact health goals. Every plan includes direct WhatsApp access to your dietitian.",
+      "Clinical nutrition tailored to your exact health goals. Every plan includes direct WhatsApp access to your dietitian. Choose in-person visits at the clinic or online consultations by video call.",
     sheetImage: "/images/diet-plans-pricing.jpg",
     currency: "INR",
     cta: { label: "View all Plans", href: "/packages" },
@@ -739,6 +770,8 @@ export const content = {
       chevronRight: "/images/icons/chevron-right.svg",
       linkNext: "/images/icons/link-next.svg",
     },
+    modeLabel: "Consultation type",
+    modes: { inPerson: "In-person", online: "Online" },
     durationLabels: {
       oneMonth: "1 month",
       threeMonths: "3 months",
@@ -906,6 +939,14 @@ export const content = {
       handle: "varshasdietclinic",
       url: "https://www.instagram.com/varshasdietclinic?igsi=MXVqY3Z0d3FlazBkbQ%3D%3D&utm_source=qr",
     },
+    youtube: {
+      handle: "VarshasDietClinic",
+      url: "https://www.youtube.com/@VarshasDietClinic",
+    },
+    linkedin: {
+      url: "https://www.linkedin.com/in/varsha-ladkat-b6059330a",
+    },
+    socialLabels: { instagram: "Instagram", youtube: "YouTube", linkedin: "LinkedIn" },
     links: [
       { label: "Home", href: "/" },
       { label: "Results", href: "/#results" },

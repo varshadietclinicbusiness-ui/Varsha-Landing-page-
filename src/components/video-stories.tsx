@@ -4,7 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion";
 import { content } from "@/data/content";
 
-const TILES = 4;
+type Video = (typeof content.testimonials.videos)[number];
+
+const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+function youTubeSrc(id: string, mode: "background" | "full") {
+  const base = `https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0&modestbranding=1`;
+  // Background: silent, looping, no controls. Full: starts from the beginning with sound.
+  return mode === "background"
+    ? `${base}&autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&disablekb=1&fs=0&iv_load_policy=3`
+    : `${base}&autoplay=1`;
+}
 
 export function VideoStories() {
   if (!content.testimonials.visible) return null;
@@ -14,9 +24,6 @@ export function VideoStories() {
 
 function Stories() {
   const videos = content.testimonials.videos;
-  // Four tiles next to each other. With a single clip, each tile starts at a different moment.
-  const tiles = Array.from({ length: TILES }, (_, index) => videos[index % videos.length]);
-  const staggerStart = videos.length < TILES;
   const [active, setActive] = useState<number | null>(null);
 
   useEffect(() => {
@@ -32,6 +39,8 @@ function Stories() {
     };
   }, [active]);
 
+  const current = active !== null ? videos[active] : null;
+
   return (
     <section id="stories" className="overflow-hidden bg-forest py-8 lg:py-20">
       <div className="flex flex-col items-center gap-6 lg:gap-10">
@@ -46,39 +55,105 @@ function Stories() {
           stagger={0.1}
           className="mx-auto grid w-full max-w-[1152px] grid-cols-2 gap-3 px-4 lg:grid-cols-4 lg:gap-6 lg:px-8"
         >
-          {tiles.map((video, index) => (
-            <RevealItem key={index} distance={52} scale={0.94}>
-              <button
-                type="button"
-                onClick={() => setActive(index)}
-                className="pressable lift relative block aspect-[9/16] w-full overflow-hidden rounded-[16px] bg-white lg:rounded-[20px]"
-              >
-                <MutedLoop src={video.src} startAt={staggerStart ? index / TILES : 0} />
-              </button>
+          {videos.map((video, index) => (
+            <RevealItem key={video.kind === "youtube" ? video.id : video.src} distance={52} scale={0.94}>
+              <VideoTile video={video} paused={active !== null} onOpen={() => setActive(index)} />
             </RevealItem>
           ))}
         </RevealGroup>
       </div>
 
-      {active !== null && tiles[active] ? (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/92">
+      {current ? (
+        <div
+          className="fixed inset-0 z-[80] flex flex-col items-center justify-center gap-3 bg-black/92 p-3"
+          onClick={() => setActive(null)}
+        >
           <button
             type="button"
             aria-label={content.testimonials.closeLabel}
             onClick={() => setActive(null)}
-            className="pressable absolute top-5 right-5 z-10 grid size-11 place-items-center rounded-full bg-white/15"
+            className={`pressable absolute top-4 right-4 z-10 grid size-11 place-items-center rounded-full bg-white/15 ${focusRing}`}
           >
             <img src={content.site.closeIcon} alt="" width={28} height={28} className="size-7 invert" />
           </button>
-          <video src={tiles[active].src} className="max-h-dvh max-w-full" autoPlay playsInline controls loop />
+          <div className="flex max-h-full flex-col items-center gap-3" onClick={(event) => event.stopPropagation()}>
+            {current.kind === "youtube" ? (
+              <>
+                <iframe
+                  src={youTubeSrc(current.id, "full")}
+                  title={content.testimonials.playLabel}
+                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  className="aspect-[9/16] h-[calc(100dvh-5.5rem)] max-h-[860px] max-w-[94vw] rounded-[16px] border-0 bg-black"
+                />
+                <a
+                  href={`https://www.youtube.com/shorts/${current.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`pressable rounded-full bg-white/15 px-4 py-2 text-[14px] font-semibold text-white ${focusRing}`}
+                >
+                  {content.testimonials.watchLabel}
+                </a>
+              </>
+            ) : (
+              <video src={current.src} className="max-h-dvh max-w-full" autoPlay playsInline controls loop />
+            )}
+          </div>
         </div>
       ) : null}
     </section>
   );
 }
 
-// Plays only while the tile is on screen. Skips autoplay for people who prefer reduced motion.
-function MutedLoop({ src, startAt }: { src: string; startAt: number }) {
+// The tile plays silently in the background while it is on screen. A click opens it from the start.
+function VideoTile({ video, paused, onOpen }: { video: Video; paused: boolean; onOpen: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      threshold: 0.25,
+      rootMargin: "120px 0px",
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const play = inView && !paused;
+
+  return (
+    <div
+      ref={ref}
+      className="lift relative aspect-[9/16] w-full overflow-hidden rounded-[16px] bg-[#1f3629] lg:rounded-[20px]"
+    >
+      {video.kind === "youtube" ? (
+        play ? (
+          <iframe
+            src={youTubeSrc(video.id, "background")}
+            title={content.testimonials.playLabel}
+            allow="autoplay; encrypted-media"
+            tabIndex={-1}
+            aria-hidden
+            loading="lazy"
+            className="pointer-events-none absolute inset-0 size-full border-0"
+          />
+        ) : null
+      ) : (
+        <FileLoop src={video.src} play={play} />
+      )}
+      <button
+        type="button"
+        aria-label={content.testimonials.playLabel}
+        onClick={onOpen}
+        className={`pressable absolute inset-0 z-10 ${focusRing}`}
+      />
+    </div>
+  );
+}
+
+function FileLoop({ src, play }: { src: string; play: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -86,27 +161,9 @@ function MutedLoop({ src, startAt }: { src: string; startAt: number }) {
     if (!node) return;
     node.muted = true;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const seek = () => {
-      if (startAt > 0 && Number.isFinite(node.duration)) node.currentTime = node.duration * startAt;
-    };
-    if (node.readyState >= 1) seek();
-    else node.addEventListener("loadedmetadata", seek, { once: true });
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !reduce) void node.play().catch(() => {});
-        else node.pause();
-      },
-      { threshold: 0.25 },
-    );
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-      node.removeEventListener("loadedmetadata", seek);
-    };
-  }, [src, startAt]);
+    if (play && !reduce) void node.play().catch(() => {});
+    else node.pause();
+  }, [play]);
 
   return (
     <video

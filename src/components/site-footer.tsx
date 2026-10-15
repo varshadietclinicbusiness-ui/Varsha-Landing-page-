@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/motion";
+import { InstagramIcon, LinkedInIcon, YouTubeIcon } from "@/components/social-icons";
 import { content, whatsappHref } from "@/data/content";
 
 export function SiteFooter() {
@@ -84,7 +85,28 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <p className="text-center text-[16px] leading-[1.3] text-[#9eaba3] lg:text-[14px]">{copyright}</p>
+        <div className="flex flex-col items-center gap-5">
+          <ul className="flex items-center gap-3">
+            {[
+              { label: content.footer.socialLabels.instagram, href: instagram.url, Icon: InstagramIcon },
+              { label: content.footer.socialLabels.youtube, href: content.footer.youtube.url, Icon: YouTubeIcon },
+              { label: content.footer.socialLabels.linkedin, href: content.footer.linkedin.url, Icon: LinkedInIcon },
+            ].map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="pressable grid size-11 place-items-center rounded-full text-white ring-1 ring-white/30 hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  <Icon className="size-6" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-center text-[16px] leading-[1.3] text-[#9eaba3] lg:text-[14px]">{copyright}</p>
+        </div>
       </Reveal>
     </footer>
   );

@@ -35,7 +35,7 @@ export function MobileNav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/50 px-5 py-5 backdrop-blur-[14px] lg:py-0 desk:px-20 w1440:px-20 w1920:px-[100px]">
+    <header className="sticky top-0 z-50 bg-white/50 px-5 py-5 backdrop-blur-[14px] lg:py-0 desk:px-10 w1440:px-20 w1920:px-[100px]">
       <div className="flex items-center justify-between gap-8">
         <Link href="/" className="relative h-[38px] w-[64px] shrink-0 lg:h-[54px] lg:w-[90px]" onClick={() => setOpen(false)}>
           <Image
@@ -49,12 +49,12 @@ export function MobileNav() {
         </Link>
 
         <div className="hidden min-w-0 flex-1 items-center justify-end gap-5 lg:flex">
-          <nav className="flex max-w-[720px] items-center" aria-label="Primary">
+          <nav className="flex items-center" aria-label="Primary">
             {content.site.nav.map((item) => (
               <Link
                 key={item.href}
                 href={navHref(item.href, pathname)}
-                className="pressable flex items-center justify-center px-8 py-[30px] text-[20px] leading-[1.4] font-semibold whitespace-nowrap text-ink"
+                className="pressable flex items-center justify-center px-3 py-[30px] text-[17px] leading-[1.4] font-semibold whitespace-nowrap text-ink w1440:px-5 w1440:text-[20px] w1920:px-8"
               >
                 {item.label}
               </Link>

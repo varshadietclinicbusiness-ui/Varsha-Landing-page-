@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@/components/analytics";
+import { OfferPopup } from "@/components/offer-popup";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { content } from "@/data/content";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <SiteFooter />
         <WhatsAppFab />
+        <OfferPopup />
         <Analytics />
       </body>
     </html>

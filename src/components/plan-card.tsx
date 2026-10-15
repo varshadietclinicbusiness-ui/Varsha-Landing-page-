@@ -4,11 +4,13 @@ import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
-import { content, formatInr, whatsappPlanHref } from "@/data/content";
+import { content, whatsappPlanHref } from "@/data/content";
 
 const DURATIONS = ["oneMonth", "threeMonths", "sixMonths"] as const;
+const MODES = ["inPerson", "online"] as const;
 
 type DurationKey = (typeof DURATIONS)[number];
+type ModeKey = (typeof MODES)[number];
 type Plan = (typeof content.pricing.plans)[number];
 
 export function PlanCard({
@@ -19,6 +21,7 @@ export function PlanCard({
   variant?: "carousel" | "page";
 }) {
   const [duration, setDuration] = useState<DurationKey>("oneMonth");
+  const [mode, setMode] = useState<ModeKey>("inPerson");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [menuPos, setMenuPos] = useState({ bottom: 0, left: 0, width: 0 });
@@ -26,7 +29,6 @@ export function PlanCard({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const speciality = content.specialities.items.find((item) => item.name === plan.name);
   const durationLabel = content.pricing.durationLabels[duration];
-  const price = plan.prices[duration];
   const compact = variant === "carousel";
 
   const updateMenuPos = () => {
@@ -76,7 +78,7 @@ export function PlanCard({
   return (
     <article
       className={`lift flex flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${
-        compact ? "h-[397px] w-[264px] shrink-0 lg:h-auto lg:w-[366px] lg:gap-5 lg:pb-5" : "w-full max-w-[342px] lg:w-[366px] lg:max-w-[366px] lg:shrink-0 lg:gap-5 lg:pb-5"
+        compact ? "h-[450px] w-[264px] shrink-0 lg:h-auto lg:w-[366px] lg:gap-5 lg:pb-5" : "w-full max-w-[342px] lg:w-[366px] lg:max-w-[366px] lg:shrink-0 lg:gap-5 lg:pb-5"
       }`}
     >
       <div
@@ -105,14 +107,14 @@ export function PlanCard({
             </p>
           </div>
 
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex flex-col gap-2">
             <button
               ref={buttonRef}
               type="button"
               aria-haspopup="listbox"
               aria-expanded={open}
               onClick={() => setOpen((value) => !value)}
-              className="pressable flex items-center justify-center gap-2 rounded-[8px] bg-duration px-3 py-1.5 text-white"
+              className="pressable flex items-center justify-center gap-2 self-start rounded-[8px] bg-duration px-3 py-1.5 text-white"
             >
               <Image
                 src={content.pricing.icons.calendar}
@@ -163,14 +165,31 @@ export function PlanCard({
                 )
               : null}
 
-            <p className="text-[28px] leading-[1.1] font-extrabold tracking-[-0.3px] text-card-title lg:text-[26px]">
-              {formatInr(price)}
-            </p>
+            <div
+              role="radiogroup"
+              aria-label={content.pricing.modeLabel}
+              className="grid grid-cols-2 gap-1 rounded-[8px] bg-[#e8f1e3] p-1"
+            >
+              {MODES.map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  role="radio"
+                  aria-checked={mode === key}
+                  onClick={() => setMode(key)}
+                  className={`pressable rounded-[6px] px-2 py-1.5 text-[14px] leading-[1.2] font-semibold lg:text-[16px] ${
+                    mode === key ? "bg-duration text-white shadow-sm" : "text-duration"
+                  }`}
+                >
+                  {content.pricing.modes[key]}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
         <a
-          href={whatsappPlanHref(plan.name, durationLabel)}
+          href={whatsappPlanHref(plan.name, `${durationLabel}, ${content.pricing.modes[mode]}`)}
           target="_blank"
           rel="noopener noreferrer"
           className="pressable flex items-center justify-between rounded-[8px] pt-1"

@@ -8,6 +8,7 @@ import { MISSING, content } from "@/data/content";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 const SWIPE_DISTANCE = 48;
+const AUTO_ADVANCE_MS = 5000;
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta";
@@ -30,6 +31,10 @@ function ResultsStage() {
   const [fullscreen, setFullscreen] = useState<number | null>(null);
   const swipe = useRef({ startX: 0, startY: 0, swiped: false });
   const thumbs = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const { index } = page;
   const client = clients[index];
@@ -78,6 +83,24 @@ function ResultsStage() {
   const afterAlt = name ? `${section.afterLabel} — ${name}` : section.afterLabel;
   const hasMany = clients.length > 1;
 
+  // Track whether the section is on screen, so it only moves while someone can see it.
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      threshold: 0.35,
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-advance. Any change of client (by hand too) restarts the 5 second wait.
+  useEffect(() => {
+    if (reduce || !hasMany || !inView || hovered || focused || fullscreen !== null) return;
+    const timer = setTimeout(() => goTo(index + 1, 1), AUTO_ADVANCE_MS);
+    return () => clearTimeout(timer);
+  }, [reduce, hasMany, inView, hovered, focused, fullscreen, index, goTo]);
+
   // Photos slide in from the side you are heading to; the After photo wipes in after them.
   const slideIn = page.moved && !reduce;
   const photoInitial = (side: number) =>
@@ -90,6 +113,9 @@ function ResultsStage() {
   return (
     <section
       id="results"
+      ref={sectionRef}
+      onFocus={(event) => setFocused(event.target.matches(":focus-visible"))}
+      onBlur={() => setFocused(false)}
       aria-roledescription="carousel"
       aria-label={section.heading}
       onKeyDown={(event) => {
@@ -109,7 +135,11 @@ function ResultsStage() {
 
         <Reveal delay={0.1} className="flex w-full flex-col items-center px-4 lg:px-8">
           {/* Stage */}
-          <div className="relative w-full max-w-[1040px]">
+          <div
+            className="relative w-full max-w-[1040px]"
+            onPointerEnter={(event) => setHovered(event.pointerType === "mouse")}
+            onPointerLeave={() => setHovered(false)}
+          >
             <div
               className="relative pt-4 pb-8 lg:pt-6 lg:pb-10"
               onPointerDown={(event) => {

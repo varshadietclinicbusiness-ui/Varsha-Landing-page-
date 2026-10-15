@@ -103,6 +103,6 @@ export function localBusinessJsonLd() {
     },
     hasMap: location.mapsUrl,
     openingHoursSpecification: openingHours(),
-    sameAs: [instagram],
+    sameAs: [instagram, footer.youtube.url, footer.linkedin.url],
   };
 }
