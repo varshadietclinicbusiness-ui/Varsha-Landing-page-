@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata("about");
 
 const card =
   "lift flex flex-col gap-2 rounded-[12px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] lg:rounded-[20px] lg:p-6";
-const h2 = "font-display text-[28px] leading-none lg:text-[44px]";
+const h2 = "font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[44px]";
 const h3 = "text-[20px] leading-[1.2] font-extrabold tracking-[-0.2px] lg:text-[22px]";
 const body = "text-[16px] leading-[1.4] font-medium text-ink-muted lg:text-[18px]";
 

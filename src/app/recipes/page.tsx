@@ -20,7 +20,7 @@ export default function RecipesPage() {
         <MobileNav />
         <div className="flex flex-col items-center gap-5 px-6 pt-8 pb-16 lg:gap-10 lg:px-[max(4.5rem,calc((100%-76.5rem)/2))] lg:pt-14 lg:pb-20">
           <Reveal className="flex w-full flex-col items-center gap-3 px-4 text-center text-ink lg:gap-5 lg:px-0">
-            <h1 className="font-display text-[28px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.recipes.heading}</h1>
+            <h1 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.recipes.heading}</h1>
             <p className="max-w-[360px] text-[16px] leading-[1.3] font-semibold lg:max-w-[653px] lg:text-[20px] lg:leading-[1.4]">
               {content.recipes.subtext}
             </p>

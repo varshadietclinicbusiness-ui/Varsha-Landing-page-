@@ -29,7 +29,7 @@ export default function PackagesPage() {
         <MobileNav />
         <div className="flex flex-col items-center gap-8 px-0 pt-8 pb-12 lg:gap-10 lg:pt-14 lg:pb-20">
           <Reveal className="shell flex w-full flex-col items-center gap-4 text-center text-ink">
-            <h1 className="font-display text-[28px] leading-none lg:text-[50px]">{content.pricing.heading}</h1>
+            <h1 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px]">{content.pricing.heading}</h1>
             <p className="max-w-[360px] text-[16px] leading-[1.3] font-semibold lg:max-w-[640px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
               {content.pricing.subtext}
             </p>

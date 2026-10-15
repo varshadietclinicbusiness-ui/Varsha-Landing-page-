@@ -16,7 +16,7 @@ export function PricingSnapshot() {
     >
       <div className="flex flex-col items-center gap-6 pt-6 lg:gap-10 lg:pt-10">
         <Reveal className="flex w-full flex-col items-center gap-3 px-4 text-center text-ink lg:gap-4 lg:px-0">
-          <h2 className="font-display text-[28px] leading-none lg:text-[44px]">{content.pricing.heading}</h2>
+          <h2 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[44px]">{content.pricing.heading}</h2>
           <p className="max-w-[360px] text-[16px] leading-[1.3] font-semibold text-ink lg:max-w-[550px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
             {content.pricing.subtext}
           </p>

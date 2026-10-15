@@ -19,7 +19,7 @@ export function SiteFooter() {
         className="pointer-events-none absolute right-0 -bottom-[90px] h-[252px] w-[421px] object-contain opacity-[0.08] lg:h-[320px] lg:w-[534px]"
       />
       <Reveal distance={28} className="relative shell flex w-full flex-col items-center gap-8 lg:gap-12">
-        <div className="flex w-full flex-col items-start gap-10 lg:grid lg:grid-cols-4 lg:items-start lg:gap-12">
+        <div className="flex w-full flex-col items-start gap-10 md:max-lg:grid md:max-lg:grid-cols-2 md:max-lg:gap-x-10 md:max-lg:gap-y-10 lg:grid lg:grid-cols-4 lg:items-start lg:gap-12">
           <div className="order-last flex flex-col items-start gap-5 lg:order-first">
             <Image src={mark} alt={content.site.clinicName} width={158} height={95} className="h-[95px] w-[158px]" />
             <p className="text-[24px] leading-[1.2] font-bold tracking-[0.48px] text-white lg:text-[26px]">

@@ -261,7 +261,7 @@ export function OfferPopup() {
         {phase === "chip" ? (
           <motion.div
             key="offer-chip"
-            className="fixed right-4 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+9.5rem)] z-[60] lg:right-6 lg:bottom-6"
+            className="fixed right-4 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+8.5rem)] z-[60] lg:right-6 lg:bottom-6"
             initial={reduce ? { opacity: 0 } : { opacity: 0, transform: "translate3d(0px, 18px, 0px) scale(0.85)" }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, transform: "translate3d(0px, 0px, 0px) scale(1)" }}
             exit={{ opacity: 0 }}
@@ -271,26 +271,34 @@ export function OfferPopup() {
               href={claimHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="pressable lift flex items-center gap-3 rounded-full bg-ink py-3 pr-5 pl-4 text-white shadow-[0_16px_34px_-12px_rgba(20,61,0,0.7)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              aria-label={`${offer.chipLabel} ${time.text}`}
+              className="pressable relative grid size-14 place-items-center rounded-full bg-[linear-gradient(180deg,#ffffff_0%,#efe8cf_100%)] text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-2px_0_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.3),0_4px_8px_-2px_rgba(0,0,0,0.28)] ring-1 ring-black/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
-              <span aria-hidden className="relative grid size-3 place-items-center">
-                <span className="absolute inline-flex size-3 animate-ping rounded-full bg-cta opacity-70" />
-                <span className="relative inline-flex size-2.5 rounded-full bg-cta" />
-              </span>
-              <span className="text-[14px] leading-[1.25] font-semibold">
-                {offer.chipLabel}{" "}
-                <span className="font-display text-[20px] tabular-nums" role="timer" aria-live="off">
-                  {time.text}
-                </span>
+              <svg viewBox="0 0 56 56" className="absolute inset-0 size-full -rotate-90" fill="none" aria-hidden>
+                <circle cx="28" cy="28" r="25" stroke="#e3dbbd" strokeWidth="3" />
+                <circle
+                  cx="28"
+                  cy="28"
+                  r="25"
+                  stroke="#ee7c24"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeDasharray={157.08}
+                  strokeDashoffset={157.08 * (1 - share)}
+                  style={{ transition: "stroke-dashoffset 1s linear" }}
+                />
+              </svg>
+              <span className="relative font-display text-[15px] leading-none tabular-nums" role="timer" aria-live="off">
+                {time.text}
               </span>
             </a>
             <button
               type="button"
               aria-label={offer.closeLabel}
               onClick={() => setPhase("hidden")}
-              className="pressable absolute -top-2 -right-2 grid size-6 place-items-center rounded-full bg-white text-ink ring-1 ring-black/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              className="pressable absolute -top-1.5 -right-1.5 grid size-5 place-items-center rounded-full bg-white text-ink shadow-sm ring-1 ring-black/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
-              <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden>
+              <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden>
                 <path d="m6 6 12 12M18 6 6 18" />
               </svg>
             </button>

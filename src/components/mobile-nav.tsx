@@ -27,10 +27,10 @@ export function MobileNav() {
       if (event.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 

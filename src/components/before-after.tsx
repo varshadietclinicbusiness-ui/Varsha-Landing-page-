@@ -68,10 +68,10 @@ function ResultsStage() {
       if (event.key === "Escape") setFullscreen(null);
     };
     document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [fullscreen]);
 
@@ -127,7 +127,7 @@ function ResultsStage() {
     >
       <div className="flex flex-col items-center gap-8 lg:gap-6">
         <Reveal className="shell flex w-full flex-col items-center gap-2 text-center text-ink lg:gap-4 lg:px-0">
-          <h2 className="font-display w-full text-[28px] leading-none lg:text-[50px]">{section.heading}</h2>
+          <h2 className="font-display w-full text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px]">{section.heading}</h2>
           <p className="max-w-[302px] text-[16px] leading-[1.3] font-semibold text-pretty lg:max-w-[620px] lg:text-[20px] lg:leading-[1.4] lg:text-[#316148]">
             {section.subtext}
           </p>

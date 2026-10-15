@@ -14,7 +14,7 @@ export function Location() {
       <div className="mx-auto flex w-full max-w-[80rem] flex-col gap-8 lg:gap-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-16">
           <Reveal from="left" className="flex min-w-0 flex-1 flex-col gap-5">
-            <h2 className="font-display text-center text-[28px] leading-none lg:text-left lg:text-[50px]">{heading}</h2>
+            <h2 className="font-display text-center text-[28px] md:max-lg:text-[40px] leading-none lg:text-left lg:text-[50px]">{heading}</h2>
             <div className="flex flex-1 flex-col gap-4 lg:gap-8">
               <div className="flex flex-col items-start gap-2">
                 <p className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] lg:text-[22px]">{clinicName}</p>
@@ -62,13 +62,13 @@ export function Location() {
             </div>
 
             {content.talkToUs.visible ? (
-              <h2 className="mt-auto font-display text-[28px] leading-none lg:pt-8 lg:text-[26px] lg:font-sans lg:font-bold">
+              <h2 className="mt-auto font-display text-[28px] md:max-lg:text-[28px] leading-none lg:pt-8 lg:text-[26px] lg:font-sans lg:font-bold">
                 {content.talkToUs.heading}
               </h2>
             ) : null}
           </Reveal>
 
-          <Reveal from="right" delay={0.12} className="aspect-[542/529] w-full overflow-hidden rounded-[12px] bg-[#e1e1e1] lg:aspect-auto lg:min-h-[560px] lg:w-[min(100%,38rem)] lg:flex-none">
+          <Reveal from="right" delay={0.12} className="aspect-[542/529] w-full overflow-hidden rounded-[12px] bg-[#e1e1e1] md:max-lg:aspect-[16/9] lg:aspect-auto lg:min-h-[560px] lg:w-[min(100%,38rem)] lg:flex-none">
             <iframe
               title={heading}
               src={embedSrc}

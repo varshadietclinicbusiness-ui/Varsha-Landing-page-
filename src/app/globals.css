@@ -41,9 +41,7 @@ body {
 }
 
 /* Slide-ins start a little off to the side. Clip, never scroll, so they cannot widen the page.
-   clip (not hidden) keeps the sticky header working. */
-html,
-body,
+   Only on main: clip on html or body would detach the sticky header when scroll is locked. */
 main {
   overflow-x: clip;
 }

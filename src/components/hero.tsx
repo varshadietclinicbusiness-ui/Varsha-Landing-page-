@@ -24,25 +24,25 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-20 flex w-full shrink-0 flex-col items-center gap-5 px-4 pt-6 lg:absolute lg:top-0 lg:left-0 lg:w-[577px] lg:items-start lg:gap-10 lg:px-0 desk:top-[80px] desk:left-[40px] w1440:top-[80px] w1440:left-[68px] w1920:top-[100px] w1920:left-[192px]">
+      <div className="relative z-20 flex w-full shrink-0 flex-col items-center gap-5 px-4 pt-6 md:max-lg:gap-7 md:max-lg:px-10 md:max-lg:pt-10 md:max-lg:pb-6 lg:absolute lg:top-0 lg:left-0 lg:w-[577px] desk:w-[min(577px,calc(50vw_-_64px))] lg:items-start lg:gap-10 lg:px-0 desk:top-[80px] desk:left-[40px] w1440:top-[80px] w1440:left-[68px] w1920:top-[100px] w1920:left-[192px]">
         <div
           className="enter-left flex w-full flex-col items-center gap-2 text-center text-ink lg:items-start lg:gap-6 lg:text-left"
           style={{ "--enter-delay": "0.15s" } as CSSProperties}
         >
           {showHeadline ? (
-            <h1 className="font-display text-[32px] leading-none tracking-[-0.32px] lg:text-[64px] lg:tracking-[-0.64px] w1920:text-[66px] w1920:tracking-[-0.66px]">
+            <h1 className="font-display text-[32px] leading-none tracking-[-0.32px] md:max-lg:text-[52px] md:max-lg:tracking-[-0.52px] lg:text-[64px] lg:tracking-[-0.64px] desk:text-[56px] desk:tracking-[-0.56px] w1920:text-[66px] w1920:tracking-[-0.66px]">
               {hero.headline}
             </h1>
           ) : null}
           {showSubtext ? (
-            <p className="max-w-[430px] text-[18px] leading-[1.3] font-semibold text-ink lg:max-w-none lg:text-[26px] lg:leading-[1.3] lg:font-bold lg:tracking-[-0.2px] lg:text-[#316148]">
+            <p className="max-w-[430px] text-[18px] leading-[1.3] font-semibold text-ink md:max-lg:max-w-[600px] md:max-lg:text-[22px] lg:max-w-none lg:text-[26px] desk:text-[22px] lg:leading-[1.3] lg:font-bold lg:tracking-[-0.2px] lg:text-[#316148]">
               {hero.subtext}
             </p>
           ) : null}
         </div>
 
         <div
-          className="enter-up flex w-full flex-col items-center gap-4 lg:w-full lg:flex-row lg:items-stretch lg:justify-start lg:gap-5"
+          className="enter-up flex w-full flex-col items-center gap-4 md:max-lg:flex-row md:max-lg:justify-center md:max-lg:gap-5 desk:gap-3 lg:w-full lg:flex-row lg:items-stretch lg:justify-start lg:gap-5"
           style={{ "--enter-delay": "0.45s" } as CSSProperties}
         >
           {content.whatsapp.visible ? (
@@ -50,7 +50,7 @@ export function Hero() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="pressable shine relative inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:w-[266px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
+              className="pressable shine relative inline-flex h-12 w-full items-center justify-center gap-2.5 md:max-lg:h-14 md:max-lg:w-[266px] md:max-lg:text-[19px] rounded-[8px] bg-cta px-6 text-[16px] leading-[1.3] font-bold text-white lg:h-[58px] lg:w-[266px] desk:w-auto desk:flex-1 desk:px-3 desk:text-[18px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
             >
               <WhatsAppIcon className="size-6 text-white" />
               {hero.primaryCta.label}
@@ -58,7 +58,7 @@ export function Hero() {
           ) : null}
           <a
             href={hero.secondaryCta.href}
-            className="pressable inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[8px] border-2 border-ink bg-paper px-6 text-[16px] leading-[1.3] font-bold text-ink lg:h-[58px] lg:w-[271px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
+            className="pressable inline-flex h-12 w-full items-center justify-center gap-2.5 md:max-lg:h-14 md:max-lg:w-[271px] md:max-lg:text-[19px] rounded-[8px] border-2 border-ink bg-paper px-6 text-[16px] leading-[1.3] font-bold text-ink lg:h-[58px] lg:w-[271px] desk:w-auto desk:flex-1 desk:px-3 desk:text-[18px] lg:px-6 lg:py-3.5 lg:text-[22px] lg:leading-[1.2] lg:tracking-[-0.3px]"
           >
             <img src={hero.secondaryCta.icon} alt="" width={24} height={24} className="size-6" />
             {hero.secondaryCta.label}

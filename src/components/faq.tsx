@@ -20,13 +20,13 @@ export function Faq() {
     >
       <div className="mx-auto flex w-full max-w-[80rem] flex-col items-center gap-6 lg:max-w-none lg:gap-12">
         <Reveal className="flex w-full flex-col items-center gap-3 text-center lg:gap-6">
-          <h2 className="font-display text-[28px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.faq.heading}</h2>
+          <h2 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.faq.heading}</h2>
           <p className="max-w-[520px] text-[16px] leading-[1.3] font-semibold lg:text-[20px] lg:leading-[1.4]">
             {content.faq.subtext}
           </p>
         </Reveal>
 
-        <RevealGroup stagger={0.08} className="flex w-full flex-col overflow-hidden rounded-[20px] lg:gap-3 lg:overflow-visible lg:rounded-none">
+        <RevealGroup stagger={0.08} className="flex w-full flex-col overflow-hidden rounded-[20px] md:max-lg:mx-auto md:max-lg:max-w-[720px] lg:gap-3 lg:overflow-visible lg:rounded-none">
           {items.map((item, index) => {
             const isOpen = open === index;
             return (

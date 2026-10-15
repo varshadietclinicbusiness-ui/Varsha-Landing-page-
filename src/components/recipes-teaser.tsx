@@ -22,7 +22,7 @@ export function RecipesTeaser() {
     <section id="recipes" className="relative scroll-mt-[78px] overflow-hidden bg-paper py-8 text-ink lg:scroll-mt-[88px] lg:py-20">
       <div className="relative z-10 flex flex-col items-center gap-6 lg:gap-10">
         <Reveal className="shell flex w-full flex-col items-center gap-3 text-center lg:gap-5 lg:px-0">
-          <h2 className="font-display text-[28px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.recipesTeaser.heading}</h2>
+          <h2 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px] lg:tracking-[-0.5px]">{content.recipesTeaser.heading}</h2>
           <p className="max-w-[360px] text-[16px] leading-[1.3] font-semibold lg:max-w-[653px] lg:text-[20px] lg:leading-[1.4]">
             {content.recipesTeaser.subtext}
           </p>

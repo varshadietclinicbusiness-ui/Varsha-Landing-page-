@@ -12,7 +12,7 @@ export function Testimonials() {
     <section id="reviews" className="overflow-x-clip bg-reviews py-8 lg:py-20">
       <div className="flex flex-col items-center gap-6 lg:gap-10">
         <Reveal className="shell flex w-full flex-col items-center gap-2 text-center text-ink">
-          <h2 className="font-display text-[28px] leading-none lg:text-[50px]">
+          <h2 className="font-display text-[28px] md:max-lg:text-[40px] leading-none lg:text-[50px]">
             {content.testimonials.reviewsHeading}
           </h2>
           <p className="max-w-[280px] text-[16px] leading-[1.3] font-semibold lg:max-w-[640px] lg:text-[20px] lg:leading-[1.4]">
