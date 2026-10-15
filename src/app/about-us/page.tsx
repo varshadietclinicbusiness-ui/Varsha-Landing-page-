@@ -88,7 +88,7 @@ export default function AboutPage() {
         </RevealGroup>
       </section>
 
-      <section className="bg-reviews">
+      <section className="bg-paper">
         <div className="shell grid items-center gap-6 py-10 lg:grid-cols-2 lg:gap-16 lg:py-16">
           <Reveal from="left" scale={0.97} className="relative mx-auto aspect-[4/5] w-full max-w-[360px] overflow-hidden rounded-[20px] lg:max-w-[440px]">
             <Image
