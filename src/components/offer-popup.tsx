@@ -176,7 +176,7 @@ export function OfferPopup() {
                 </svg>
               </button>
 
-              <div className="relative overflow-hidden bg-results px-6 pt-10 pb-7 text-center">
+              <div className="relative overflow-hidden bg-[linear-gradient(to_bottom,#fcf7c4_0%,#fffdf0_62%,#ffffff_100%)] px-6 pt-10 pb-7 text-center">
                 {!reduce
                   ? CONFETTI.map((piece, index) => (
                       <motion.span
